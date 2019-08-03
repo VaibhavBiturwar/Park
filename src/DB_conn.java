@@ -8,7 +8,7 @@ public class DB_conn {
 		Connection con=null;
 		try {
 		Class.forName("com.mysql.cj.jdbc.Driver");//loads jdbc driver
-		String url=("jdbc:mysql://localhost:3306/parking?useSSL=false");//this is the thing when we put password to open the database
+		String url=("jdbc:mysql://localhost:3306/parking");//this is the thing when we put password to open the database
 		con=DriverManager.getConnection(url,"root","root");//performs connectivity
 		
 	}catch(Exception e) {

@@ -24,7 +24,7 @@ System.setProperty("jna.library.path", "<the directory of the folder without a t
         catch (TesseractException e) { 
             e.printStackTrace(); 
         }
-		return "Error encounterd"; 
+        	return null;
 	}
 	
 	

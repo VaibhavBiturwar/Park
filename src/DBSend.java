@@ -17,15 +17,18 @@ import java.util.Date;
  */
 public class DBSend {
         Statement stmt;
-        Connection con;
         ResultSet res;
+        DB_conn db = new DB_conn();
+		Connection con;
+		final int total = 250;
         
     public int entry(String s){
         try
         {
-         String uid = "root";
-         String pwd ="";
-         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/parking",uid,pwd) ; 
+//         String uid = "root";
+//         String pwd ="";
+//         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/parking",uid,pwd) ; 
+        	con = db.getConnection();
          stmt= con.createStatement();
          
          SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm:ss");//dd/MM/yyyy
@@ -45,12 +48,16 @@ public class DBSend {
         return 1;  
     }
     
+    
+    
     public String[] exit(String s){
         try
         {
-         String uid = "root";
-         String pwd ="";
-         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/parking",uid,pwd) ; 
+//         String uid = "root";
+//         String pwd ="";
+//         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/parking",uid,pwd) ; 
+        	con = db.getConnection();
+
          stmt= con.createStatement();
          String query = "SELECT * FROM park WHERE no like'"+s+"'";
          //System.out.println(query);
@@ -95,9 +102,11 @@ public class DBSend {
     {
          try
         {
-         String uid = "root";
-         String pwd ="";
-         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/parking",uid,pwd) ; 
+//         String uid = "root";
+//         String pwd ="";
+//         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/parking",uid,pwd) ; 
+         	con = db.getConnection();
+
          stmt= con.createStatement();
         
          String query = "SELECT count(*) FROM park";
@@ -119,22 +128,25 @@ public class DBSend {
     public String[][] garage()
     {
          DBSend sd = new DBSend();
-         String values[][]= new String[sd.instance()][2];
+         String values[][]= new String[sd.instance()][3];
          try
         {
-         String uid = "root";
-         String pwd ="";
-         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/parking",uid,pwd) ; 
+//         String uid = "root";
+//         String pwd ="";
+//         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/parking",uid,pwd) ; 
+         	con = db.getConnection();
+
          stmt= con.createStatement();
    
-         String query = "SELECT no , time FROM park";
+         String query = "SELECT * FROM park";
          res = stmt.executeQuery(query);
          
          int i=0;
          while(res.next())
          {
-             values[i][0] = res.getString("no");
-             values[i][1] = res.getString("time");
+        	 values[i][0] = Integer.toString(res.getInt("id"));
+             values[i][1] = res.getString("no");
+             values[i][2] = res.getString("time");
              //System.out.println(values[1][i]);
              i++;
          }

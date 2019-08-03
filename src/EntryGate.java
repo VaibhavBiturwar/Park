@@ -28,19 +28,21 @@ public class EntryGate extends JFrame{
 	private JTable numTable;
 	private JLabel vacant;
 	private final Action action = new SwingAction();
+	DBSend db = new DBSend();
+	int count= db.instance(),vacantSpace =db.total - count;
 	
 
-	public static void main(String[] args) {
-		
-				try {
-				EntryGate eg=new EntryGate();
-				eg.setVisible(true);
-				eg.setSize(800,500);
-				eg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+//	public static void main(String[] args) {
+//		
+//				try {
+//				EntryGate eg=new EntryGate();
+//				eg.setVisible(true);
+//				eg.setSize(800,500);
+//				eg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
 	
 	public EntryGate() {
 		super("Vacant");
@@ -48,16 +50,13 @@ public class EntryGate extends JFrame{
 		setResizable(false);
 		getContentPane().setLayout(null);
 		
-		
+
    
-		 String[][] data = { 
-		            { "1", "KA04DD1444", "08:30" }, 
-		            { "2", "CG05MA6014", "9:00" } 
-		        }; 
+		 String[][] data = db.garage();
 		  
 		 // Column Names 
 		 String[] columnNames = { "SerialNo.", "LicencePlate", "InTime"}; 
-	 numTable=new JTable(data,columnNames);
+		 numTable=new JTable(data,columnNames);
 		 numTable.setBounds(10,100, 448,140);
 		// numTable.getPreferredSize();
 ////		 adding it to JScrollPane 
@@ -77,12 +76,12 @@ public class EntryGate extends JFrame{
 		getContentPane().add(internal_panel);
 		internal_panel.setLayout(null);
 		
-		JLabel lblVacant = new JLabel("Vacant");
+		JLabel lblVacant = new JLabel("Vacant\n" + vacantSpace);
 		lblVacant.setBounds(12, 2, 49, 98);
 		lblVacant.setFont(new Font("Stencil", Font.PLAIN, 13));
 		internal_panel.add(lblVacant);
 		
-		JLabel lblCount = new JLabel("Count");
+		JLabel lblCount = new JLabel("Count\n" + count);
 		lblCount.setBounds(125, 2, 42, 98);
 		lblCount.setFont(new Font("Stencil", Font.PLAIN, 13));
 		internal_panel.add(lblCount);
