@@ -64,3 +64,17 @@ ALTER TABLE `park`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+use parking;
+create table user_entry(
+user_id    int auto_increment,
+  primary key(user_id),
+user_name varchar(50),
+user_pass varchar(50)
+);
+insert into user_entry values
+(101,'Rohit','mene'),
+(102,'Shimeerh','shimeerh'),
+(103,'Ankita','ankita'),
+(104,'Vaibhav','vaibhav')

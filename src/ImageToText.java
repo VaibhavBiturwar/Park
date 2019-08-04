@@ -5,7 +5,7 @@ import net.sourceforge.tess4j.TesseractException;
 public class ImageToText {
 	
 	String getText(String location) {
-System.setProperty("jna.library.path", "<the directory of the folder without a trailing slash>");
+		System.setProperty("jna.library.path", "<the directory of the folder without a trailing slash>");
     	
     	Tesseract tesseract = new Tesseract(); 
         try { 
